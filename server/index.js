@@ -26,29 +26,31 @@ app.post('/api/analyze', async (req, res) => {
   try {
     const { message } = req.body;
     
-    if (!message) {
-      return res.status(400).json({ error: 'Message is required' });
-    }
-
-    const completion = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      messages: [
-        {
-          role: "system",
-          content: "You are a communication coach. Analyze the user's message and provide feedback on how to improve clarity, effectiveness, and overall communication style. Include specific suggestions and explanations."
-        },
-        {
-          role: "user",
-          content: message
-        }
+    // تحلیل پیام و ایجاد نتیجه ساختاریافته
+    const analysis = {
+      overview: "خلاصه تحلیل پیام",
+      score: calculateOverallScore(), // تابع محاسبه امتیاز کلی
+      clarity: {
+        score: calculateClarityScore(),
+        feedback: "بازخورد در مورد وضوح پیام"
+      },
+      tone: {
+        score: calculateToneScore(),
+        feedback: "بازخورد در مورد لحن پیام"
+      },
+      effectiveness: {
+        score: calculateEffectivenessScore(),
+        feedback: "بازخورد در مورد اثربخشی پیام"
+      },
+      suggestions: [
+        "پیشنهاد اول برای بهبود",
+        "پیشنهاد دوم برای بهبود"
       ]
-    });
+    };
 
-    const analysis = completion.choices[0].message.content;
     res.json({ analysis });
   } catch (error) {
-    console.error('Error analyzing message:', error);
-    res.status(500).json({ error: 'Failed to analyze message' });
+    res.status(500).json({ error: error.message });
   }
 });
 
