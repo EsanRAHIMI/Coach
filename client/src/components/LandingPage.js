@@ -1,95 +1,110 @@
-// client/src/components/LandingPage.js
+// client/src/components/Footer.js
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { MessageCircle, BarChart2, TrendingUp, Award, Zap, UserPlus } from 'lucide-react';
+import { MessageCircle, Github, Twitter, Mail } from 'lucide-react';
 
-const LandingPage = () => {
+const Footer = () => {
   return (
-    <div>
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-600 to-blue-800 text-white py-20">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center">
-            <div className="md:w-1/2 mb-10 md:mb-0">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                Master Communication with AI-Powered Coaching
-              </h1>
-              <p className="text-xl mb-8 text-blue-100">
-                Practice conversations, get instant feedback, and track your progress with our intelligent communication coach.
-              </p>
-              <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                <Link
-                  to="/chat"
-                  className="bg-white text-blue-600 hover:bg-blue-50 transition-colors px-8 py-3 rounded-lg font-semibold text-center"
-                >
-                  Start Practicing
-                </Link>
-                <Link
-                  to="/dashboard"
-                  className="bg-transparent hover:bg-blue-700 transition-colors border-2 border-white px-8 py-3 rounded-lg font-semibold text-center"
-                >
-                  View Dashboard
-                </Link>
-              </div>
+    <footer className="bg-gray-800 text-white py-8">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="md:col-span-1">
+            <div className="flex items-center mb-4">
+              <MessageCircle className="text-blue-400 mr-2" size={24} />
+              <h2 className="text-xl font-bold">AI Communication Coach</h2>
             </div>
-            <div className="md:w-1/2 flex justify-center">
-              <img 
-                src="/api/placeholder/500/400" 
-                alt="AI Communication Coach" 
-                className="rounded-lg shadow-xl"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">Intelligent Features</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Our AI-powered platform offers everything you need to enhance your communication skills
+            <p className="text-gray-400 text-sm">
+              Enhance your communication skills with the power of AI. Practice conversations,
+              receive feedback, and track your progress.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <div className="p-3 bg-blue-100 rounded-full w-14 h-14 flex items-center justify-center mb-4">
-                <MessageCircle size={24} className="text-blue-600" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3">Interactive Practice</h3>
-              <p className="text-gray-600">
-                Engage in realistic conversations with our AI and get real-time feedback on your communication style.
-              </p>
+          <div className="md:col-span-1">
+            <h3 className="text-lg font-medium mb-4">Features</h3>
+            <ul className="space-y-2 text-gray-400">
+              <li>
+                <a href="/chat" className="hover:text-blue-400 transition-colors">
+                  Practice Chat
+                </a>
+              </li>
+              <li>
+                <a href="/analyze" className="hover:text-blue-400 transition-colors">
+                  Message Analysis
+                </a>
+              </li>
+              <li>
+                <a href="/progress" className="hover:text-blue-400 transition-colors">
+                  Progress Tracking
+                </a>
+              </li>
+            </ul>
+          </div>
+          
+          <div className="md:col-span-1">
+            <h3 className="text-lg font-medium mb-4">Resources</h3>
+            <ul className="space-y-2 text-gray-400">
+              <li>
+                <a href="/blog" className="hover:text-blue-400 transition-colors">
+                  Communication Blog
+                </a>
+              </li>
+              <li>
+                <a href="/tutorials" className="hover:text-blue-400 transition-colors">
+                  Tutorials
+                </a>
+              </li>
+              <li>
+                <a href="/faq" className="hover:text-blue-400 transition-colors">
+                  FAQ
+                </a>
+              </li>
+            </ul>
+          </div>
+          
+          <div className="md:col-span-1">
+            <h3 className="text-lg font-medium mb-4">Connect</h3>
+            <div className="flex space-x-4 mb-4">
+              <a href="https://github.com" className="text-gray-400 hover:text-white transition-colors">
+                <Github size={20} />
+              </a>
+              <a href="https://twitter.com" className="text-gray-400 hover:text-white transition-colors">
+                <Twitter size={20} />
+              </a>
+              <a href="mailto:contact@example.com" className="text-gray-400 hover:text-white transition-colors">
+                <Mail size={20} />
+              </a>
             </div>
-            
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <div className="p-3 bg-green-100 rounded-full w-14 h-14 flex items-center justify-center mb-4">
-                <BarChart2 size={24} className="text-green-600" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3">Detailed Analysis</h3>
-              <p className="text-gray-600">
-                Get comprehensive feedback on tone, clarity, and effectiveness of your messages and communications.
-              </p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <div className="p-3 bg-purple-100 rounded-full w-14 h-14 flex items-center justify-center mb-4">
-                <TrendingUp size={24} className="text-purple-600" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3">Progress Tracking</h3>
-              <p className="text-gray-600">
-                Monitor your improvement over time with detailed metrics and personalized improvement suggestions.
-              </p>
+            <p className="text-sm text-gray-400">
+              Subscribe to our newsletter for the latest updates.
+            </p>
+            <div className="flex mt-2">
+              <input 
+                type="email" 
+                placeholder="Your email" 
+                className="bg-gray-700 text-white px-3 py-2 rounded-l text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 w-full"
+              />
+              <button className="bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded-r text-sm transition-colors">
+                Subscribe
+              </button>
             </div>
           </div>
         </div>
-      </section>
-    </div>
+        
+        <div className="border-t border-gray-700 mt-8 pt-6 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-gray-400 text-sm">
+            &copy; {new Date().getFullYear()} AI Communication Coach. All rights reserved.
+          </p>
+          <div className="flex space-x-4 mt-4 md:mt-0">
+            <a href="/terms" className="text-gray-400 hover:text-white text-sm transition-colors">
+              Terms of Service
+            </a>
+            <a href="/privacy" className="text-gray-400 hover:text-white text-sm transition-colors">
+              Privacy Policy
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
   );
 };
 
-export default LandingPage;
-
-      {/* How It Works Section */}
+export default Footer;

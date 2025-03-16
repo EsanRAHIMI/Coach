@@ -1,6 +1,6 @@
 // client/src/components/Dashboard.js
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ChatInterface from './ChatInterface';
 import AnalyzeInterface from './AnalyzeInterface';
 import ProgressMetrics from './ProgressMetrics';
@@ -9,7 +9,6 @@ import { MessageCircle, BarChart2, TrendingUp } from 'lucide-react';
 const Dashboard = ({ defaultTab }) => {
   const [activeTab, setActiveTab] = useState('chat');
   const navigate = useNavigate();
-  const location = useLocation();
 
   useEffect(() => {
     if (defaultTab) {
