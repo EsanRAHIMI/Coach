@@ -1,0 +1,72 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@headlessui/react": "^2.2.0",
+    "@heroicons/react": "^2.2.0",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
+    "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.8.3",
+    "core-js": "^3.41.0",
+    "lucide-react": "^0.482.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.3.0",
+    "react-scripts": "^5.0.1",
+    "uuid": "^11.1.0",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "tailwind:init": "npx tailwindcss init -p",
+    "tailwind:build": "npx tailwindcss -i ./src/styles/index.css -o ./src/styles/tailwind-output.css",
+    "show-path": "echo $PATH"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-async-generator-functions": "^7.26.8",
+    "@babel/plugin-transform-dynamic-import": "^7.25.9",
+    "@babel/plugin-transform-json-strings": "^7.25.9",
+    "@babel/plugin-transform-object-rest-spread": "^7.25.9",
+    "@babel/plugin-transform-optional-catch-binding": "^7.25.9",
+    "@babel/plugin-transform-optional-chaining": "^7.25.9",
+    "@babel/plugin-transform-private-property-in-object": "^7.25.9",
+    "@babel/plugin-transform-unicode-property-regex": "^7.25.9",
+    "@eslint/object-schema": "^2.1.6",
+    "@jridgewell/sourcemap-codec": "^1.5.0",
+    "@sideway/address": "^5.0.0",
+    "@tailwindcss/postcss": "^4.0.14",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^9.22.0",
+    "joi": "^17.13.3",
+    "postcss": "^8.5.3",
+    "postcss-cli": "^11.0.1",
+    "rimraf": "^6.0.1",
+    "terser-webpack-plugin": "^5.3.14",
+    "typescript": "^4.9.5"
+  },
+  "packageManager": "yarn@4.6.0+sha512.5383cc12567a95f1d668fbe762dfe0075c595b4bfff433be478dbbe24e05251a8e8c3eb992a986667c1d53b6c3a9c85b8398c35a960587fbd9fa3a0915406728"
+}

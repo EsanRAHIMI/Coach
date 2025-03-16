@@ -10,7 +10,8 @@ import AnalyzeInterface from './components/AnalyzeInterface';
 import ProgressMetrics from './components/ProgressMetrics';
 import MessageInput from './components/MessageInput';
 import ChatMessage from './components/ChatMessage';
-import './App.css';
+import './styles/index.css';
+
 
 function App() {
   // Get the base URL from environment variables or default to '/'
