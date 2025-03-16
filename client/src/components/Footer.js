@@ -1,6 +1,6 @@
 // client/src/components/Footer.js
 import React from 'react';
-import { MessageCircle, Github, Twitter, Mail } from 'lucide-react';
+import { MessageCircle, Github, Linkedin, Mail } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -63,13 +63,13 @@ const Footer = () => {
           <div className="md:col-span-1">
             <h3 className="text-lg font-medium mb-4">Connect</h3>
             <div className="flex space-x-4 mb-4">
-              <a href="https://github.com" className="text-gray-400 hover:text-white transition-colors">
+              <a href="https://github.com/Masikarimi1" className="text-gray-400 hover:text-white transition-colors">
                 <Github size={20} />
               </a>
-              <a href="https://twitter.com" className="text-gray-400 hover:text-white transition-colors">
-                <Twitter size={20} />
+              <a href="https://www.linkedin.com/in/masikarimi" className="text-gray-400 hover:text-white transition-colors">
+                <Linkedin size={20} />
               </a>
-              <a href="mailto:contact@example.com" className="text-gray-400 hover:text-white transition-colors">
+              <a href="mailto:contact@masikarimi.com" className="text-gray-400 hover:text-white transition-colors">
                 <Mail size={20} />
               </a>
             </div>

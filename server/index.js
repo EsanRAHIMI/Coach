@@ -4,6 +4,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const { OpenAI } = require('openai');
+const path = require('path');
 
 // Load environment variables
 dotenv.config();
@@ -11,9 +12,14 @@ dotenv.config();
 // Initialize Express app
 const app = express();
 const PORT = process.env.PORT || 5001;
+const API_BASE_PATH = process.env.API_BASE_PATH || '';
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  // Allow requests from the frontend origin
+  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  credentials: true
+}));
 app.use(bodyParser.json());
 
 // Initialize OpenAI
@@ -22,7 +28,7 @@ const openai = new OpenAI({
 });
 
 // API Routes
-app.post('/api/analyze', async (req, res) => {
+app.post(`${API_BASE_PATH}/api/analyze`, async (req, res) => {
   try {
     const { message } = req.body;
     
@@ -54,7 +60,7 @@ app.post('/api/analyze', async (req, res) => {
   }
 });
 
-app.post('/api/chat', async (req, res) => {
+app.post(`${API_BASE_PATH}/api/chat`, async (req, res) => {
   try {
     const { message, conversation } = req.body;
     
@@ -99,7 +105,25 @@ app.post('/api/chat', async (req, res) => {
   }
 });
 
+// Placeholder functions for the scoring methods
+function calculateOverallScore() {
+  return Math.floor(Math.random() * 30) + 70;
+}
+
+function calculateClarityScore() {
+  return Math.floor(Math.random() * 30) + 70;
+}
+
+function calculateToneScore() {
+  return Math.floor(Math.random() * 30) + 70;
+}
+
+function calculateEffectivenessScore() {
+  return Math.floor(Math.random() * 30) + 70;
+}
+
 // Start server
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT} with API base path: ${API_BASE_PATH}`);
+  console.log(`Frontend URL: ${process.env.FRONTEND_URL || 'http://localhost:3000'}`);
 });

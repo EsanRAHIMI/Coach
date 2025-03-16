@@ -13,8 +13,11 @@ import ChatMessage from './components/ChatMessage';
 import './App.css';
 
 function App() {
+  // Get the base URL from environment variables or default to '/'
+  const baseUrl = process.env.PUBLIC_URL || '';
+  
   return (
-    <Router>
+    <Router basename={baseUrl}>
       <div className="min-h-screen flex flex-col bg-gray-50">
         <Header />
         <main className="flex-grow">
@@ -26,16 +29,6 @@ function App() {
             <Route path="/progress" element={<ProgressMetrics />} />
             <Route path="/message-input" element={<MessageInput />} />
             <Route path="/chat-message" element={<ChatMessage />} />
-            <Route path="/footer" element={<Footer />} />
-            <Route path="/header" element={<Header />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/landing-page" element={<LandingPage />} />
-            <Route path="/progress-metrics" element={<ProgressMetrics />} />
-            <Route path="/analyze-interface" element={<AnalyzeInterface />} />
-            <Route path="/chat-interface" element={<ChatInterface />} />
-            <Route path="/message-input" element={<MessageInput />} />
-            <Route path="/chat-message" element={<ChatMessage />} />
-            <Route path="/footer" element={<Footer />} />
           </Routes>
         </main>
         <Footer />

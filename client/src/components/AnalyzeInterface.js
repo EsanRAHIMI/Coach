@@ -1,8 +1,8 @@
 // client/src/components/AnalyzeInterface.js
 import React, { useState } from 'react';
-import axios from 'axios';
 import MessageInput from './MessageInput';
 import { CheckCircle, AlertCircle, Zap, AlertTriangle, BarChart2 } from 'lucide-react';
+import { analyzeMessage } from '../services/api';
 
 const AnalyzeInterface = () => {
   const [analysis, setAnalysis] = useState(null);
@@ -13,11 +13,9 @@ const AnalyzeInterface = () => {
     setIsLoading(true);
     
     try {
-      const response = await axios.post('http://localhost:5001/api/analyze', {
-        message
-      });
+      const response = await analyzeMessage(message);
       
-      const analysisResult = response.data.analysis;
+      const analysisResult = response.analysis;
       setAnalysis(analysisResult);
       
       // Add to analysis history
@@ -203,61 +201,60 @@ const AnalyzeInterface = () => {
           )}
         </div>
       </div>
-      
       <div className="lg:col-span-1">
         <div className="bg-white rounded-lg shadow-md p-4">
           <h3 className="text-lg font-medium mb-4">Analysis History</h3>
-          
-          {analysisHistory.length === 0 ? (
-            <div className="text-center py-8 text-gray-500">
-              <p>No previous analyses</p>
-              <p className="text-sm mt-2">Your message analysis history will appear here</p>
-            </div>
-          ) : (
-            <div className="space-y-3">
-              {analysisHistory.map(entry => (
-                <div key={entry.id} className="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-sm font-medium">Score: {Math.round(entry.score)}</span>
-                    <span className="text-xs text-gray-500">{new Date(entry.timestamp).toLocaleTimeString()}</span>
+            
+            {analysisHistory.length === 0 ? (
+              <div className="text-center py-8 text-gray-500">
+                <p>No previous analyses</p>
+                <p className="text-sm mt-2">Your message analysis history will appear here</p>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {analysisHistory.map(entry => (
+                  <div key={entry.id} className="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-sm font-medium">Score: {Math.round(entry.score)}</span>
+                      <span className="text-xs text-gray-500">{new Date(entry.timestamp).toLocaleTimeString()}</span>
+                    </div>
+                    <p className="text-sm text-gray-600 truncate">{entry.message}</p>
+                    <p className="text-xs text-gray-500 mt-1">{entry.overview}</p>
                   </div>
-                  <p className="text-sm text-gray-600 truncate">{entry.message}</p>
-                  <p className="text-xs text-gray-500 mt-1">{entry.overview}</p>
-                </div>
-              ))}
-            </div>
-          )}
-          
-          <div className="mt-6 pt-4 border-t border-gray-200">
-            <h4 className="font-medium mb-3">Analysis Options</h4>
-            <div className="space-y-2">
-              <div className="flex items-center justify-between text-sm">
-                <span>Tone Analysis</span>
-                <div className="relative inline-block w-10 mr-2 align-middle select-none">
-                  <input type="checkbox" checked={true} readOnly className="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" />
-                  <label className="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
-                </div>
+                ))}
               </div>
-              <div className="flex items-center justify-between text-sm">
-                <span>Grammar Check</span>
-                <div className="relative inline-block w-10 mr-2 align-middle select-none">
-                  <input type="checkbox" checked={true} readOnly className="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" />
-                  <label className="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+            )}
+            
+            <div className="mt-6 pt-4 border-t border-gray-200">
+              <h4 className="font-medium mb-3">Analysis Options</h4>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between text-sm">
+                  <span>Tone Analysis</span>
+                  <div className="relative inline-block w-10 mr-2 align-middle select-none">
+                    <input type="checkbox" checked={true} readOnly className="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" />
+                    <label className="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-center justify-between text-sm">
-                <span>Improvement Suggestions</span>
-                <div className="relative inline-block w-10 mr-2 align-middle select-none">
-                  <input type="checkbox" checked={true} readOnly className="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" />
-                  <label className="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                <div className="flex items-center justify-between text-sm">
+                  <span>Grammar Check</span>
+                  <div className="relative inline-block w-10 mr-2 align-middle select-none">
+                    <input type="checkbox" checked={true} readOnly className="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" />
+                    <label className="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between text-sm">
+                  <span>Improvement Suggestions</span>
+                  <div className="relative inline-block w-10 mr-2 align-middle select-none">
+                    <input type="checkbox" checked={true} readOnly className="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" />
+                    <label className="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  );
-};
-
-export default AnalyzeInterface;
+    );
+  };
+  
+  export default AnalyzeInterface;

@@ -1,9 +1,9 @@
 // client/src/components/ChatInterface.js
 import React, { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
 import ChatMessage from './ChatMessage';
 import MessageInput from './MessageInput';
 import { Mic, MicOff, HelpCircle, MessageSquare, AlertTriangle } from 'lucide-react';
+import { sendChatMessage } from '../services/api';
 
 const ChatInterface = () => {
   const [conversation, setConversation] = useState([]);
@@ -34,18 +34,17 @@ const ChatInterface = () => {
     setIsLoading(true);
     
     try {
-      // Fixed API endpoint to use the correct port (5001)
-      const response = await axios.post('http://localhost:5001/api/chat', {
+      const response = await sendChatMessage(
         message,
-        conversation: conversation.map(msg => ({ role: msg.role, content: msg.content }))
-      });
+        conversation.map(msg => ({ role: msg.role, content: msg.content }))
+      );
       
       // Add assistant response to conversation
       const assistantMessage = { 
-        content: response.data.reply, 
-        role: response.data.role || 'assistant',
+        content: response.reply, 
+        role: response.role || 'assistant',
         timestamp: new Date().toISOString(),
-        feedback: response.data.feedback || null
+        feedback: response.feedback || null
       };
       
       setConversation(prev => [...prev, assistantMessage]);
