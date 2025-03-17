@@ -39,7 +39,7 @@ const Pricing = () => {
             <div className="absolute -top-3 right-6 bg-gradient-primary text-dark text-sm font-medium py-1 px-3 rounded-full shadow-lg">Most Popular</div>
             <h3 className="text-xl font-semibold text-light mb-2">Pro</h3>
             <p className="text-light/70 mb-6">Perfect for professionals</p>
-            <div className="text-3xl font-bold text-primary mb-6">$19<span className="text-light/50 text-lg font-normal">/month</span></div>
+            <div className="text-3xl font-bold text-primary mb-6">$0<span className="text-light/50 text-lg font-normal">/month</span></div>
             <ul className="space-y-3 mb-6 flex-grow">
               <li className="flex items-start gap-2 text-light/80">
                 <span className="text-primary mt-0.5">✓</span>
