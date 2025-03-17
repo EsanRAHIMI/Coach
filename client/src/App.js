@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Dashboard from './components/Dashboard';
-import LandingPage from './components/LandingPage';
+import LandingPage from './components/Landing/LandingPage';
 import Footer from './components/Footer';
 import ChatInterface from './components/ChatInterface';
 import AnalyzeInterface from './components/AnalyzeInterface';
@@ -19,9 +19,9 @@ function App() {
   
   return (
     <Router basename={baseUrl}>
-      <div className="min-h-screen flex flex-col bg-gray-50">
+      <div className="flex flex-col min-h-screen bg-dark">
         <Header />
-        <main className="flex-grow">
+        <main className="flex-grow flex flex-col pt-16 mt-2"> {/* Added pt-16 for padding-top and mt-2 for margin-top */}
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/dashboard" element={<Dashboard />} />
